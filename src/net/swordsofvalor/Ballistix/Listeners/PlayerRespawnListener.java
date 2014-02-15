@@ -10,17 +10,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 
 import com.shampaggon.crackshot.CSUtility;
 
-public class PlayerJoinListener implements Listener {
+public class PlayerRespawnListener implements Listener {
 	
 	CSUtility cs = new CSUtility();
 	Random rand = new Random();
 	
 	@EventHandler(priority=EventPriority.LOW)
-	public void onPlayerJoin(PlayerJoinEvent event) {
+	public void onPlayerRespawn(PlayerRespawnEvent event) {
+		
 		Player p = event.getPlayer();
 		List<BallistixGun> primaryList = Ballistix.getPrimaries();
 		p.getInventory().clear();
@@ -29,6 +30,7 @@ public class PlayerJoinListener implements Listener {
 			int j = rand.nextInt(primaryList.size());
 			cs.giveWeapon(p, primaryList.get(j).getName(), 1);
 		}
+		
 	}
 	
 }
